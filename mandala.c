@@ -5,7 +5,7 @@
 // Greetz to Epitech Paris Coding Club
 
 // Compilation :
-// $ gcc mandala.c -o mandala.out -g -lSDL2 -lm
+// $ gcc mandala.c -o mandala.out -lSDL2 -lm
 
 ////////////////////////////////////////
 
@@ -96,8 +96,8 @@ int main(int argc, char *argv[]) {
 ////////////////////////////////////////
 
 Sdl *initSdl() {
-    Sdl *sdl = malloc(sizeof(Sdl));
-    
+    Sdl *sdl = (struct Sdl*)malloc(sizeof(Sdl));
+
     sdl->window = SDL_CreateWindow(
                     WINT,
                     SDL_WINDOWPOS_UNDEFINED,
@@ -115,37 +115,37 @@ Sdl *initSdl() {
 ////////////////////////////////////////
 
 Window *initWindow() {
-    Window *window = malloc(sizeof(Window));
-    
+    Window *window = (struct Window*)malloc(sizeof(Window));
+
     if (WINW > WINH) {
         window->pading = WINH / 10;
-        window->margin = WINW - WINH + window->pading;   
-    }         
+        window->margin = WINW - WINH + window->pading;
+    }
     else {
         window->pading = WINW / 10;
         window->margin = window->pading;
     }
 
     return window;
-}    
+}
 
 ////////////////////////////////////////
 
 Color *initColor() {
-    Color *color = malloc(sizeof(Color));
+    Color *color = (struct Color*)malloc(sizeof(Color));
 
     color->rainbow = 0;
     color->r = 255;
     color->g = 0;
     color->b = 0;
-    
+
     return color;
 }
 
 ////////////////////////////////////////
 
 Mandala *initMandala() {
-    Mandala *mandala = malloc(sizeof(Mandala));
+    Mandala *mandala = (struct Mandala*)malloc(sizeof(Mandala));
 
     mandala->myTable = STARTING_TABLE;
     mandala->myStep = STARTING_STEP;
