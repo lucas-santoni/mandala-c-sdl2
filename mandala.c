@@ -18,7 +18,7 @@
 
 #define WINH 800
 #define WINW 640
-#define WINT "Mandala WTF !"
+#define WINT "Modular Mandalas"
 #define NUMBER_OF_POINTS 300
 #define POINT_SIZE 1
 #define STARTING_TABLE 630
