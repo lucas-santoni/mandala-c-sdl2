@@ -251,9 +251,9 @@ void drawCircle(Sdl *sdl, Window *window, Mandala *mandala) {
 
 void drawTable(Sdl *sdl, Mandala *mandala) {
   int i;
-  int result = 0;
 
   for (i = 0; i < NUMBER_OF_POINTS; i++) {
+    int result = 0;
     result = mandala->myTable * i;
 
     if (result >= NUMBER_OF_POINTS)
