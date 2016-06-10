@@ -27,4 +27,4 @@ On Windows, you may have to help MinGW with the SDL :
 
 `$ gcc mandala.c -o mandala.out -lmingw32 -lSDL2Main-lSDL2 -lm`
 
-![screenshot](screenshot.png)
+![screenshot](screenshot.png "Wow ! The mandalas !")
