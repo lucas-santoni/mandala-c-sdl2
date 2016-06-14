@@ -4,9 +4,6 @@
 
 // Greetz to Epitech Paris Coding Club
 
-// Compilation :
-// $ gcc mandala.c -o mandala.out -lSDL2 -lm
-
 ////////////////////////////////////////
 
 #include <stdio.h>
