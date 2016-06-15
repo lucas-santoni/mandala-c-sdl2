@@ -23,4 +23,6 @@ mandalas.
 * Windows : `$ make mandala.exe`
 * *nix : `$ make mandala.out`
 
+Then run the program and enjoy ! ;-)
+
 ![screenshot](screenshot.png "Wow ! The mandalas !")
