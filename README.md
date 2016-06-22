@@ -16,12 +16,17 @@ mandalas.
 * C standard library
 * C Math library
 * SDL2 library
-* MinGW32 if using Windows
+* Possibly MinGW if running Windows
 
 ## Compilation
 
-* Windows : `$ make mandala.exe`
-* *nix : `$ make mandala.out`
+```
+$ make help       
+Juste use make (without any argument) to compile.
+Use make clean in order to delete mandala.
+If you have errors during compilation, you can contact me for help.
+Windows users, you can use MinGW with this project.
+```
 
 Then run the program and enjoy ! ;-)
 
