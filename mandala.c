@@ -165,9 +165,11 @@ int checkUserInput(Sdl *sdl, Color *color, Mandala *mandala) {
   else
     color->rainbow = 0;
 
-  if (sdl->keys[SDL_SCANCODE_LEFT] && sdl->keys[SDL_SCANCODE_RIGHT] && mandala->myTable >= 0 + (STARTING_STEP * 4))
+  if (sdl->keys[SDL_SCANCODE_LEFT] && sdl->keys[SDL_SCANCODE_RIGHT] && 
+    mandala->myTable >= 0 + (STARTING_STEP * 4))
     mandala->myStep = -STARTING_STEP * 4;
-  else if (sdl->keys[SDL_SCANCODE_LEFT] && mandala->myTable >= 0 + (STARTING_STEP * 4))
+  else if (sdl->keys[SDL_SCANCODE_LEFT] && mandala->myTable >= 0 + 
+    (STARTING_STEP * 4))
     mandala->myStep = -STARTING_STEP * 4;
   else if (sdl->keys[SDL_SCANCODE_RIGHT])
     mandala->myStep = STARTING_STEP * 4;
@@ -233,10 +235,12 @@ void drawCircle(Sdl *sdl, Window *window, Mandala *mandala) {
   point.h = POINT_SIZE;
 
   for (i = 0; i < 360; i+=(360.0 / NUMBER_OF_POINTS)) {
-    point.x = ((WINW + (WINH - WINW)) / 2 - cos(i * (M_PI / 180)) * (WINW - window->margin) / 2);
+    point.x = ((WINW + (WINH - WINW)) / 2 - cos(i * (M_PI / 180)) * 
+      (WINW - window->margin) / 2);
     mandala->coors[j].x = point.x;
 
-    point.y = ((WINH - (WINH - WINW)) / 2 - sin(i * (M_PI / 180)) * (WINH - window->margin - (WINH - WINW)) / 2);
+    point.y = ((WINH - (WINH - WINW)) / 2 - sin(i * (M_PI / 180)) * 
+      (WINH - window->margin - (WINH - WINW)) / 2);
     mandala->coors[j].y = point.y;
 
     SDL_RenderFillRect(sdl->renderer, &point);
@@ -254,16 +258,20 @@ void drawTable(Sdl *sdl, Mandala *mandala) {
     result = mandala->myTable * i;
 
     if (result >= NUMBER_OF_POINTS)
-      SDL_RenderDrawLine(sdl->renderer, mandala->coors[i].x, mandala->coors[i].y, mandala->coors[(int)fmod(result, NUMBER_OF_POINTS)].x, mandala->coors[(int)fmod(result, NUMBER_OF_POINTS)].y);
+      SDL_RenderDrawLine(sdl->renderer, mandala->coors[i].x, mandala->coors[i].y
+        , mandala->coors[(int)fmod(result, NUMBER_OF_POINTS)].x, 
+        mandala->coors[(int)fmod(result, NUMBER_OF_POINTS)].y);
 
     else
-      SDL_RenderDrawLine(sdl->renderer, mandala->coors[i].x, mandala->coors[i].y, mandala->coors[(int)result].x, mandala->coors[(int)result].y);
+      SDL_RenderDrawLine(sdl->renderer, mandala->coors[i].x, mandala->coors[i].y
+        , mandala->coors[(int)result].x, mandala->coors[(int)result].y);
   }
 }
 
 ////////////////////////////////////////
 
-void freeAllTheThings(Sdl *sdl, Window *window, Mandala *mandala, Color *color) {
+void freeAllTheThings(Sdl *sdl, Window *window, Mandala *mandala, 
+  Color *color) {
   free(window);
   free(mandala);
   free(color);
