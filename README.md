@@ -21,11 +21,7 @@ mandalas.
 ## Compilation
 
 ```
-$ make help       
-Juste use make (without any argument) to compile.
-Use make clean in order to delete mandala.
-If you have errors during compilation, you can contact me for help.
-Windows users, you can use MinGW with this project.
+make
 ```
 
 Then run the program and enjoy ! ;-)

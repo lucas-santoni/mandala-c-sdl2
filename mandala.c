@@ -1,78 +1,16 @@
-// This program has no copyright.
-// Contact : geographer@geographer.fr
-// Website : https://blog.geographer.fr/
+/* 
+** This program has no copyright.
+** Contact : geographer@geographer.fr
+** Website : https://blog.geographer.fr/
+** Greetz to Epitech Paris Coding Club
+*/
 
-// Greetz to Epitech Paris Coding Club
+#include "mandala.h"
 
-////////////////////////////////////////
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <SDL2/SDL.h>
-#include <math.h>
-
-////////////////////////////////////////
-
-#define WINH 800
-#define WINW 640
-#define WINT "Modular Mandalas"
-#define NUMBER_OF_POINTS 300
-#define POINT_SIZE 1
-#define STARTING_TABLE 630
-#define STARTING_STEP 0.001
-
-////////////////////////////////////////
-
-typedef struct Sdl {
-  SDL_Window *window;
-  SDL_Renderer *renderer;
-  SDL_Event *event;
-  const Uint8 *keys;
-} Sdl;
-
-typedef struct Window {
-  int pading;
-  int margin;
-} Window;
-
-typedef struct Color {
-  int rainbow;
-  int r;
-  int g;
-  int b;
-} Color;
-
-typedef struct Coor {
-  int x;
-  int y;
-} Coors;
-
-typedef struct Mandala {
-  float myTable;
-  float myStep;
-  struct Coor coors[NUMBER_OF_POINTS];
-} Mandala;
-
-////////////////////////////////////////
-
-Sdl *initSdl();
-Window *initWindow();
-Color *initColor();
-Mandala *initMandala();
-
-int checkUserInput(Sdl *sdl, Color *color, Mandala *mandala);
-
-void drawBackground(Sdl *sdl, Color *color);
-void drawCircle(Sdl *sdl, Window *window, Mandala *mandala);
-void drawMandala(Sdl *sdl, Color *color, Mandala *mandala, Window *window);
-void rainbowMode(Color *color);
-void drawTable(Sdl *sdl, Mandala *mandala);
-
-void freeAllTheThings(Sdl *sdl, Window *window, Mandala *mandala, Color *color);
-
-////////////////////////////////////////
-
-int main(int argc, char *argv[]) {
+/*
+** Mandala entry point.
+*/
+int main() {
   Sdl *sdl = initSdl();
   Window *window = initWindow();
   Color *color = initColor();
@@ -90,8 +28,9 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-////////////////////////////////////////
-
+/*
+** This function will init all the things related to the SDL.
+*/
 Sdl *initSdl() {
   Sdl *sdl = (struct Sdl*)malloc(sizeof(Sdl));
 
@@ -109,8 +48,9 @@ Sdl *initSdl() {
   return sdl;
 }
 
-////////////////////////////////////////
-
+/*
+** This function will init all the things related to the window.
+*/
 Window *initWindow() {
   Window *window = (struct Window*)malloc(sizeof(Window));
 
@@ -126,8 +66,9 @@ Window *initWindow() {
   return window;
 }
 
-////////////////////////////////////////
-
+/*
+** This function will get some colors.
+*/
 Color *initColor() {
   Color *color = (struct Color*)malloc(sizeof(Color));
 
@@ -139,8 +80,9 @@ Color *initColor() {
   return color;
 }
 
-////////////////////////////////////////
-
+/*
+** This function will init the mandala.
+*/
 Mandala *initMandala() {
   Mandala *mandala = (struct Mandala*)malloc(sizeof(Mandala));
 
@@ -150,8 +92,9 @@ Mandala *initMandala() {
   return mandala;
 }
 
-////////////////////////////////////////
-
+/*
+** This function check the user input at any time in order to know what to do.
+*/
 int checkUserInput(Sdl *sdl, Color *color, Mandala *mandala) {
   SDL_PollEvent(sdl->event);
 
@@ -182,8 +125,9 @@ int checkUserInput(Sdl *sdl, Color *color, Mandala *mandala) {
     return 0;
 }
 
-////////////////////////////////////////
-
+/*
+** This function will draw our background.
+*/
 void drawBackground(Sdl *sdl, Color *color) {
   if (color->rainbow == 1)
     SDL_SetRenderDrawColor(sdl->renderer, 0, 0, 0, 255);
@@ -193,8 +137,9 @@ void drawBackground(Sdl *sdl, Color *color) {
   SDL_RenderClear(sdl->renderer);
 }
 
-////////////////////////////////////////
-
+/*
+** This function will draw our mandala.
+*/
 void drawMandala(Sdl *sdl, Color *color, Mandala *mandala, Window *window) {
   if (color->rainbow == 1) {
     rainbowMode(color);
@@ -207,8 +152,9 @@ void drawMandala(Sdl *sdl, Color *color, Mandala *mandala, Window *window) {
   drawTable(sdl, mandala);
 }
 
-////////////////////////////////////////
-
+/*
+** This function will create a rainbow effet by playing with the colors.
+*/
 void rainbowMode(Color *color) {
   if (color->r == 255 && color->g < 255 && color->b == 0)
     color->g++;
@@ -224,8 +170,9 @@ void rainbowMode(Color *color) {
     color->b--;
 }
 
-////////////////////////////////////////
-
+/*
+** Ths function will draw a circle around the mandala.
+*/
 void drawCircle(Sdl *sdl, Window *window, Mandala *mandala) {
   float i;
   int j = 0;
@@ -248,8 +195,9 @@ void drawCircle(Sdl *sdl, Window *window, Mandala *mandala) {
   }
 }
 
-////////////////////////////////////////
-
+/*
+** This function will draw the lines of the mandala.
+*/
 void drawTable(Sdl *sdl, Mandala *mandala) {
   int i;
 
@@ -258,18 +206,21 @@ void drawTable(Sdl *sdl, Mandala *mandala) {
     result = mandala->myTable * i;
 
     if (result >= NUMBER_OF_POINTS)
-      SDL_RenderDrawLine(sdl->renderer, mandala->coors[i].x, mandala->coors[i].y
-        , mandala->coors[(int)fmod(result, NUMBER_OF_POINTS)].x, 
+      SDL_RenderDrawLine(sdl->renderer, mandala->coors[i].x,
+	  mandala->coors[i].y, mandala->coors[(int)fmod(result,
+	    NUMBER_OF_POINTS)].x, 
         mandala->coors[(int)fmod(result, NUMBER_OF_POINTS)].y);
 
     else
-      SDL_RenderDrawLine(sdl->renderer, mandala->coors[i].x, mandala->coors[i].y
-        , mandala->coors[(int)result].x, mandala->coors[(int)result].y);
+      SDL_RenderDrawLine(sdl->renderer, mandala->coors[i].x,
+	  mandala->coors[i].y, mandala->coors[(int)result].x,
+	  mandala->coors[(int)result].y);
   }
 }
 
-////////////////////////////////////////
-
+/*
+** This function will free everything.
+*/
 void freeAllTheThings(Sdl *sdl, Window *window, Mandala *mandala, 
   Color *color) {
   free(window);
