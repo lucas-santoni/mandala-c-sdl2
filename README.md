@@ -11,7 +11,7 @@ mandalas.
 * Use the **spacebar** to pause
 * Use **r** to rainbow !
 
-## Requirement
+## Requirements
 
 * C standard library
 * C Math library
